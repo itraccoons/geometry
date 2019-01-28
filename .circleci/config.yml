@@ -1,0 +1,88 @@
+# CircleCI 2.0 configuration file
+# Build Java Projects with Gradle
+# Written by: Oleksii Kucheruk <ok@raccoons.co> on Fri Oct 5 2018
+---
+version: 2
+
+jobs:
+
+  validate:
+    working_directory: ~/work
+    docker: [{image: 'circleci/openjdk:11-jdk'}]
+    steps:
+      - checkout
+      - setup_remote_docker:
+          reusable: true
+          exclusive: false
+      - run:
+          name: "Validate code with OpenJDK 11"
+          command: make lint
+
+  validate-with-openjdk-8:
+    working_directory: ~/work
+    docker: [{image: 'circleci/openjdk:8-jdk'}]
+    steps:
+      - checkout
+      - setup_remote_docker:
+          reusable: true
+          exclusive: false
+      - run:
+          name: "Validate code with OpenJDK 8"
+          command: make lint
+
+  test:
+    working_directory: ~/work
+    docker: [{image: 'circleci/openjdk:11-jdk'}]
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: "Test phase"
+          command: make test
+          environment:
+            CI: true
+            CIRCLECI: true
+            SONARCLOUD_TOKEN: 5be2f82a04aa8bf3879d1bc64b3aaa60844855ff
+
+  build-code:
+    working_directory: ~/work
+    docker: [{image: 'circleci/openjdk:11-jdk'}]
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: "Code Build phase"
+          command: make build
+
+  build-image:
+    working_directory: ~/work
+    docker: [{image: 'circleci/openjdk:11-jdk'}]
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: "Image Build phase"
+          command: make build-image
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - validate-with-openjdk-8
+      - validate
+      - test:
+          requires:
+            - validate
+      - build-code:
+          requires:
+            - validate
+            - test
+      - build-image:
+          requires:
+            - validate
+            - test
+            - build-code
+          filters:
+            branches:
+              only: skaffold
+...
