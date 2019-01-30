@@ -4,16 +4,18 @@ public class Circle extends Shape {
   private final Point centre;
   private final double radius;
 
-  Circle() {
-    this.centre = new Point();
-    this.radius = 0;
+  @Override
+  public Shape newInstance() {
+    return new Circle();
   }
 
   @Override
   public String toString() {
-    return "Circle"
-                   + "{" + this.centre
-                   + "," + this.radius
-                   + "}";
+    return "Circle{" + centre + "," + radius + "}";
+  }
+
+  Circle() {
+    this.centre = new Point();
+    this.radius = 0;
   }
 }
