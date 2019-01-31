@@ -1,25 +1,31 @@
 package org.raccoons.backyards;
 
 public class Point extends Shape {
-  private final double theta;
-  private final double distance;
-
-  @Override
-  public Shape newInstance() {
-    return new Point();
-  }
+  private final Plane plane;
+  private final Coordinates coordinates;
 
   @Override
   public String toString() {
-    return "Point{" + theta + "," + distance + "}";
+    return "Point{" +
+                   "plane=" + plane +
+                   ", coordinates=" + coordinates +
+                   '}';
   }
 
-  Point() {
-    this(0,0);
+  public Plane plane() {
+    return plane;
   }
 
-  Point(double theta, double distance) {
-    this.theta = theta;
-    this.distance = distance;
+  public Coordinates coordinates() {
+    return coordinates;
+  }
+
+  public Point() {
+    this(new Plane(), new Coordinates());
+  }
+
+  public Point(Plane plane, Coordinates coordinates) {
+    this.plane = plane;
+    this.coordinates = coordinates;
   }
 }
