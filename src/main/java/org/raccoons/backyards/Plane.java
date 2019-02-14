@@ -7,8 +7,10 @@ public class Plane {
 
   private final List<Shape> shapes = new ArrayList<Shape>();
 
-  public void add(Shape shape) {
-    this.shapes.add(shape);
+  public void add(Shape... shapes) {
+    for(Shape shape : shapes) {
+      this.shapes.add(shape);
+    }
   }
 
   public void show(){
