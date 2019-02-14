@@ -4,28 +4,37 @@ public class GeometryShapes {
 
   public static void main(String[] args) {
 
-    Shape point1 = new Point(
-            new Plane("plane1"),
-            new Coordinates(45, 100)
-    );
+    /*
+    version 0
 
-    Shape circle = new Circle((Point) point1, 10);
-    System.out.println(circle);
+    ShapeFactory factory = new ShapeFactory();
 
+    Shape p1 = factory.newPoint();
+    Shape c1 = factory.newCicle();
 
-    Shape point2 = new Point(
-            new Plane("plane2"),
-            new Coordinates(45, 100)
-    );
+    Plane plane = new Plane();
 
-    Shape point3 = point1;
+    plane.addShape(p1);
+    plane.addShape(c1);
 
-    System.out.println(point1);
-    System.out.println(point2);
-    System.out.println(point3);
+    plane.showShapes();
+    */
 
+    ShapeFactory point = PointFactory.instance();
+    ShapeFactory circle = CircleFactory.instance();
 
-    Shape triangle = new Triangle((Point)point1,(Point)point2,(Point)point3);
-    System.out.println(triangle);
+    Shape p1 = point.newShape(); // ?rename? p2 = point.makeShape(withSpec)
+    Shape c1 = circle.newShape();
+
+    // Instantiate plane with shapes specified by varargs
+    Plane layer = new Plane(p1, c1);
+
+    layer.show();
+
+    layer.add(point.newShape());
+    layer.add(circle.newShape());
+
+    layer.show();
+
   }
 }

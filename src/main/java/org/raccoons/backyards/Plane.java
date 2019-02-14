@@ -1,35 +1,31 @@
 package org.raccoons.backyards;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Plane {
-  String name;
 
-  @Override
-  public String toString() {
-    return "Plane{" +
-                   "name='" + name + '\'' +
-                   '}';
+  private final List<Shape> shapes = new ArrayList<Shape>();
+
+  public void add(Shape shape) {
+    this.shapes.add(shape);
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Plane plane = (Plane) o;
-    return Objects.equals(name, plane.name);
+  public void show(){
+    for(Shape shape : this.shapes) {
+      System.out.println(shape);
+    }
   }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(name);
+  Plane() {
+    //this.shapes = new ArrayList<Shape>();
   }
 
-  Plane () {
-    this("noname");
+  Plane(Shape... shapes) {
+    for(Shape shape : shapes) {
+      this.shapes.add(shape);
+    }
   }
 
-  Plane(String name) {
-    this.name = name;
-  }
+
 }
