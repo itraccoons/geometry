@@ -1,14 +1,14 @@
 package org.raccoons.backyards;
 
-public class ShapeFactory2 {
-  private static ShapeFactory2 INSTANCE = null;
+public class Surface2DFactory {
+  private static Surface2DFactory INSTANCE = null;
 
-  private ShapeFactory2(){
+  private Surface2DFactory(){
   }
 
-  public static ShapeFactory2 instance() {
+  public static Surface2DFactory instance() {
     if( INSTANCE == null ){
-      INSTANCE = new ShapeFactory2();
+      INSTANCE = new Surface2DFactory();
     }
     return INSTANCE;
   }

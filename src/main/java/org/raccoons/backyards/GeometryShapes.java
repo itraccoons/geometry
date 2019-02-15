@@ -28,7 +28,7 @@ public class GeometryShapes {
     /*
      * Another version of factory: multiple factory methods
      */
-    ShapeFactory2 surface2D = ShapeFactory2.instance();
+    Surface2DFactory surface2D = Surface2DFactory.instance();
 
     Shape dot = surface2D.newPoint(
             surface2D.newPolarCoordinate(10,20)
