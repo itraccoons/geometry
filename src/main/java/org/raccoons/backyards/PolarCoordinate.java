@@ -1,6 +1,6 @@
 package org.raccoons.backyards;
 
-public class PolarCoordinates {
+public class PolarCoordinate {
   private final double theta;
   private final double distance;
 
@@ -12,12 +12,12 @@ public class PolarCoordinates {
                    '}';
   }
 
-  PolarCoordinates(double theta, double distance) {
+  PolarCoordinate(double theta, double distance) {
     this.theta = theta;
     this.distance = distance;
   }
 
-  PolarCoordinates() {
+  PolarCoordinate() {
     this(0,0);
   }
 }

@@ -1,20 +1,20 @@
 package org.raccoons.backyards;
 
 public class Point extends Shape {
-  private final PolarCoordinates coordinates;
+  private final PolarCoordinate coordinate;
 
   @Override
   public String toString() {
     return "Point{" +
-                   "coordinates=" + coordinates +
+                   "coordinate=" + coordinate +
                    '}';
   }
 
   public Point() {
-    this(new PolarCoordinates());
+    this(new PolarCoordinate());
   }
 
-  public Point(PolarCoordinates coordinates) {
-    this.coordinates = coordinates;
+  public Point(PolarCoordinate coordinate) {
+    this.coordinate = coordinate;
   }
 }

@@ -14,6 +14,7 @@ public class Plane {
   }
 
   public void show(){
+    System.out.println("Plane:");
     for(Shape shape : this.shapes) {
       System.out.println(shape);
     }

@@ -23,15 +23,23 @@ public class ShapeFactory2 {
     throw new CloneNotSupportedException();
   }
 
-  public Shape newPoint(){
+  public Plane newPlane() {
+    return new Plane();
+  }
+
+  public PolarCoordinate newPolarCoordinate(double theta, double distance) {
+    return new PolarCoordinate(theta, distance);
+  }
+
+  public Shape newPoint() {
     return new Point();
   }
 
-  public Shape newPoint(PolarCoordinates coordinates){
+  public Shape newPoint(PolarCoordinate coordinates) {
     return new Point(coordinates);
   }
 
-  public Shape newCircle(){
+  public Shape newCircle() {
     return new Circle();
   }
 

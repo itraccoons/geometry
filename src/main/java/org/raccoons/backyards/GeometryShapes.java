@@ -5,38 +5,42 @@ public class GeometryShapes {
   public static void main(String[] args) {
 
     /*
-     *  Version of factory: overloaded factory methods.
-     *
+     *  Version of factory: overridden factory methods.
+     *  Need to define way of args passing for different families of products
      */
 
     ShapeFactory point = PointFactory.instance();
     ShapeFactory circle = CircleFactory.instance();
 
-    Shape p1 = point.newShape();
-    // p11 = point.newShape(shapeSpec)
-    Shape c1 = circle.newShape();
+    Shape point1 = point.newShape();
+    Shape circle1 = circle.newShape();
 
     // Instantiate plane with shapes specified by varargs
-    Plane layer = new Plane(p1, c1);
+    Plane foreground = new Plane(point1, circle1);
 
-    layer.show();
-    layer.add(point.newShape());
-    layer.add(circle.newShape());
-    layer.show();
+    foreground.show();
+
+    foreground.add(point.newShape());
+    foreground.add(circle.newShape());
+    foreground.show();
 
 
     /*
      * Another version of factory: multiple factory methods
      */
-    ShapeFactory2 factory = ShapeFactory2.instance();
+    ShapeFactory2 surface2D = ShapeFactory2.instance();
 
-    Shape p2 = factory.newPoint();
-    Shape p22 = factory.newPoint(new PolarCoordinates(10,20));
+    Shape dot = surface2D.newPoint(
+            surface2D.newPolarCoordinate(10,20)
+    );
 
-    Shape c2 = factory.newCircle();
-    Shape c22 = factory.newCircle((Point) p22, 30);
+    Point wheelCenter = (Point) dot;
+    Shape wheel = surface2D.newCircle(wheelCenter, 30);
 
-    layer.add(p2, c2, p22, c22);
-    layer.show();
+    Plane background = surface2D.newPlane();
+
+    background.add(wheel);
+    background.add(dot, wheel);
+    background.show();
   }
 }
