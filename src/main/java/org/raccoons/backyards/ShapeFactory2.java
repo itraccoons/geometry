@@ -13,11 +13,12 @@ public class ShapeFactory2 {
     return INSTANCE;
   }
 
-  // Implementing the 'readResolve()' method.
+  // Preventing issue of destroying Singleton design by serialization
   protected Object readResolve() {
     return instance();
   }
 
+  // Preventing issue of destroying Singleton design by cloning
   @Override
   protected Object clone() throws CloneNotSupportedException {
     throw new CloneNotSupportedException();
