@@ -9,19 +9,20 @@ public class GeometryShapes {
      *  Need to define way of args passing for different families of products
      */
 
-    ShapeFactory point = PointFactory.instance();
-    ShapeFactory circle = CircleFactory.instance();
+    ShapeFactory pointFactory = PointFactory.instance();
+    ShapeFactory circleFactory = CircleFactory.instance();
 
-    Shape point1 = point.newShape();
-    Shape circle1 = circle.newShape();
 
     // Instantiate plane with shapes specified by varargs
-    Plane foreground = new Plane(point1, circle1);
+    Plane foreground = new Plane(pointFactory.newShape(), pointFactory.newShape());
+
+    Shape point = pointFactory.newShape();
+    Shape circle = circleFactory.newShape();
 
     foreground.show();
 
-    foreground.add(point.newShape());
-    foreground.add(circle.newShape());
+    foreground.add(point);
+    foreground.add(circle);
     foreground.show();
 
 

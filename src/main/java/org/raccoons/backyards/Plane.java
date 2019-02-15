@@ -29,6 +29,4 @@ public class Plane {
       this.shapes.add(shape);
     }
   }
-
-
 }

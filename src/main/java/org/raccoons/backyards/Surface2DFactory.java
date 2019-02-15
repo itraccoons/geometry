@@ -36,8 +36,8 @@ public class Surface2DFactory {
     return new Point();
   }
 
-  public Shape newPoint(PolarCoordinate coordinates) {
-    return new Point(coordinates);
+  public Shape newPoint(PolarCoordinate coordinate) {
+    return new Point(coordinate);
   }
 
   public Shape newCircle() {
