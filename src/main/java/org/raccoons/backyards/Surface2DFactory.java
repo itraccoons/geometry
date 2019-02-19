@@ -1,10 +1,9 @@
 package org.raccoons.backyards;
 
-public class Surface2DFactory {
+public final class Surface2DFactory {
   private static Surface2DFactory INSTANCE = null;
 
-  private Surface2DFactory(){
-  }
+  private Surface2DFactory() {}
 
   public static Surface2DFactory instance() {
     if( INSTANCE == null ){
