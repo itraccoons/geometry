@@ -1,5 +1,7 @@
 package org.raccoons.backyards;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +16,19 @@ public class Plane {
   }
 
   public void show(){
-    System.out.println("Plane:");
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    JFrame frame = new JFrame();
+    frame.setSize(new Dimension(screenSize.width / 2, screenSize.height / 2));
+
+    JTextArea textArea = new JTextArea(20,80);
+    textArea.setEditable(false);
+
     for(Shape shape : this.shapes) {
-      System.out.println(shape);
+      textArea.append(shape.toString() + "\n");
     }
+
+    frame.add(new JScrollPane(textArea));
+    frame.setVisible(true);
   }
 
   Plane() {
