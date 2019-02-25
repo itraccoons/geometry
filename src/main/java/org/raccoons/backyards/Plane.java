@@ -9,26 +9,20 @@ public class Plane {
 
   private final List<Shape> shapes = new ArrayList<Shape>();
 
-  public void add(Shape... shapes) {
+  public void add(Shape shape) {
+      this.shapes.add(shape);
+  }
+
+  public void addAll(Shape... shapes) {
     for(Shape shape : shapes) {
       this.shapes.add(shape);
     }
   }
 
   public void show(){
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    JFrame frame = new JFrame();
-    frame.setSize(new Dimension(screenSize.width / 2, screenSize.height / 2));
-
-    JTextArea textArea = new JTextArea(20,80);
-    textArea.setEditable(false);
-
     for(Shape shape : this.shapes) {
-      textArea.append(shape.toString() + "\n");
+      System.out.println(shape);
     }
-
-    frame.add(new JScrollPane(textArea));
-    frame.setVisible(true);
   }
 
   Plane() {

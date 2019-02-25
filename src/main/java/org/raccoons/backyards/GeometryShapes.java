@@ -1,47 +1,59 @@
 package org.raccoons.backyards;
 
-public class GeometryShapes {
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.awt.*;
+
+public class GeometryShapes extends Application {
 
   public static void main(String[] args) {
+    launch(args);
+  }
 
-    /*
-     *  Version of factory: overridden factory methods.
-     *  Need to define way of args passing for different families of products
-     */
+  @Override
+  public void start(Stage primaryStage) {
 
-    ShapeFactory pointFactory = PointFactory.instance();
-    ShapeFactory circleFactory = CircleFactory.instance();
-
-
-    // Instantiate plane with shapes specified by varargs
-    Plane foreground = new Plane(pointFactory.newShape(), pointFactory.newShape());
-
-    Shape point = pointFactory.newShape();
-    Shape circle = circleFactory.newShape();
-
-    foreground.show();
-
-    foreground.add(point);
-    foreground.add(circle);
-    foreground.show();
-
-
-    /*
-     * Another version of factory: multiple factory methods
-     */
-    Surface2DFactory surface2D = Surface2DFactory.instance();
-
-    Shape dot = surface2D.newPoint(
-            surface2D.newPolarCoordinate(10,20)
+    final ComboBox comboBox = new ComboBox();
+    comboBox.getItems().addAll(
+            "Point",
+            "Circle",
+            "Trianle",
+            "Rectangle"
     );
 
-    Point wheelCenter = (Point) dot;
-    Shape wheel = surface2D.newCircle(wheelCenter, 30);
+    comboBox.setValue("Point");
 
-    Plane background = surface2D.newPlane();
+    Button btn1 = new Button();
+    btn1.setText("Add");
 
-    background.add(wheel);
-    background.add(dot, wheel);
-    background.show();
+    Canvas canvas = new Canvas(300,250);
+    GraphicsContext gc = canvas.getGraphicsContext2D();
+    gc.setFill(Color.GREEN);
+    gc.fillOval(1,1,10,10);
+
+    btn1.setOnAction(new EventHandler<ActionEvent>() {
+
+      @Override
+      public void handle(ActionEvent event) {
+        System.out.println(comboBox.getValue().toString());
+      }
+    });
+
+    HBox hBox = new HBox();
+    hBox.getChildren().addAll(comboBox, btn1, canvas);
+
+    primaryStage.setTitle("Geometry Shapes");
+    primaryStage.setScene(new Scene(hBox, 300, 250));
+    primaryStage.show();
   }
 }
