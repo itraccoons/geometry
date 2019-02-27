@@ -1,8 +1,24 @@
 package org.raccoons.backyards;
 
 public class Circle extends Shape {
-  private final Point center;
-  private final double radius;
+  private Coordinate center;
+  private double radius;
+
+  public Coordinate center() {
+    return center;
+  }
+
+  public double radius() {
+    return radius;
+  }
+
+  public void setCenter(Coordinate c) {
+    this.center = c;
+  }
+
+  public void setRadius(double r) {
+    this.radius = r;
+  }
 
   @Override
   public String toString() {
@@ -12,11 +28,7 @@ public class Circle extends Shape {
                    '}';
   }
 
-  Circle() {
-    this(new Point(),0);
-  }
-
-  Circle(Point center, double radius) {
+  Circle(Coordinate center, double radius) {
     this.center = center;
     this.radius = radius;
   }
