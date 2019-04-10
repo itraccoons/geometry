@@ -2,16 +2,38 @@ package org.raccoons.backyards;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
-public class Layer {
+public class Layer implements Iterable<Element>{
+  private final int layerId;
+  private String layerName;
+  private final Style layerStyle;
+  private final List<Element> elements = new ArrayList<Element>();
 
-  private final List<Shape> shapes = new ArrayList<Shape>();
 
-  public boolean add(Shape s) {
-    return this.shapes.add(s);
+  public void setLayerName(String name) {
+    this.layerName = name;
   }
 
+  public String layerName() {
+    return layerName;
+  }
+
+  public Style layerStyle() {
+    return layerStyle;
+  }
+
+  public boolean add(Element e) {
+    e.elementStyle().copyFrom(layerStyle);
+    return elements.add(e);
+  }
+
+  public boolean remove(Element e) {
+    return elements.remove(e);
+  }
+
+  /*
   public boolean addAll(Shape... ss) {
     boolean result = false;
     for(Shape s : ss) {
@@ -19,22 +41,26 @@ public class Layer {
     }
     return result;
   }
-
   public boolean addAll(Collection <? extends Shape> c) {
     return true;
   }
-
-  public void show(){
-    for(Shape shape : this.shapes) {
-      System.out.println(shape);
-      if(shape.isVisible()) {
-        System.out.println("isVisible");
-      }
+  */
+  public void draw(){
+    System.out.print(layerName + ": ");
+    for (Element e : this) {
+      e.draw();
     }
-
+    System.out.println();
   }
 
-  Layer() {
-    //this.shapes = new ArrayList<Shape>();
+  @Override
+  public Iterator<Element> iterator() {
+    return elements.iterator();
+  }
+
+  Layer(String name) {
+    this.layerId = 1;
+    this.layerName = name;
+    this.layerStyle = new Style();
   }
 }
