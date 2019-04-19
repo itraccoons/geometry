@@ -1,38 +1,30 @@
 package org.raccoons.backyards;
 
-import java.util.Set;
-
 public class GeometryShapes {
 
   public static void main(String[] args) {
 
     MultiLayeredImage image = new MultiLayeredImage(
-            new Layer("Layer1"),
-            new Layer("Layer2")
+            new Layer(),
+            new Layer().withName("Layer2")
     );
 
-    Layer layer3 = new Layer("Layer3");
-    Layer layer4 = new Layer("Layer4");
+    Layer layer3 = new Layer()
+                           .withName("Layer3")
+                           .withStyle(new Style().withOptacity(0.5));
 
+    Layer layer4 = new Layer().withName("Layer4");
 
     image.addAll(layer3, layer4);
-    image.add(new Layer("Layer5"));
+    image.add(new Layer());
 
-    Element element1 = new Element();
-    Element element2 = new Element();
+    Element element2 = new Element(new Line(new PolarCoordinate(), new PolarCoordinate()));
 
-    layer3.add(element1);
     layer3.add(element2);
-
-    /*
-    for (Layer l : image) {
-
-      System.out.println(l.layerName());
-    }
-    */
+    layer4.add(element2);
 
     image.draw();
-    image.removeAll(layer3,layer4);
+    image.removeAll(layer3);
     image.draw();
 
   }

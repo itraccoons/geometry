@@ -22,7 +22,8 @@ public class Line extends Shape {
 
   @Override
   public String toString() {
-    return "Line{" +
+    return super.toString() +
+                   "Line{" +
                    "start=" + start +
                    ", end=" + end +
                    '}';

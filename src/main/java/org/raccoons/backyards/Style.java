@@ -1,29 +1,8 @@
 package org.raccoons.backyards;
 
-public class Style {
-  private boolean visible;
-  private double optacity;
-
-  public void setVisible(boolean value) {
-    this.visible = value;
-  }
-
-  public void setOptacity(double value) {
-    this.optacity = value;
-  }
-
-  public boolean visible() {
-    return visible;
-  }
-
-  public double optacity() {
-    return optacity;
-  }
-
-  public void copyFrom(Style s) {
-    visible = s.visible();
-    optacity = s.optacity();
-  }
+public final class Style {
+  private final boolean visible;
+  private final double optacity;
 
   @Override
   public String toString() {
@@ -33,9 +12,26 @@ public class Style {
                    '}';
   }
 
-  Style() {
-    this.visible = true;
-    this.optacity = 1.0;
+  /*
+   * Chained setters
+   */
+  public Style withVisible(boolean v) {
+    return new Style(v, this.optacity);
+  }
 
+  public Style withOptacity(double o) {
+    return new Style(this.visible, o);
+  }
+
+  /*
+   * Constructors
+   */
+  Style() {
+    this(true, 1.0);
+  }
+
+  private Style(boolean v, double o) {
+    this.visible = v;
+    this.optacity = o;
   }
 }

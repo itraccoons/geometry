@@ -1,66 +1,51 @@
 package org.raccoons.backyards;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-public class Layer implements Iterable<Element>{
+public final class Layer implements Iterable<Element>{
   private final int layerId;
-  private String layerName;
+  private final String layerName;
   private final Style layerStyle;
-  private final List<Element> elements = new ArrayList<Element>();
-
-
-  public void setLayerName(String name) {
-    this.layerName = name;
-  }
-
-  public String layerName() {
-    return layerName;
-  }
-
-  public Style layerStyle() {
-    return layerStyle;
-  }
+  private final List<Element> layerElements;
 
   public boolean add(Element e) {
-    e.elementStyle().copyFrom(layerStyle);
-    return elements.add(e);
+    return layerElements.add(e.withStyle(layerStyle));
   }
 
   public boolean remove(Element e) {
-    return elements.remove(e);
+    return layerElements.remove(e);
   }
 
-  /*
-  public boolean addAll(Shape... ss) {
-    boolean result = false;
-    for(Shape s : ss) {
-      result = this.shapes.add(s);
-    }
-    return result;
-  }
-  public boolean addAll(Collection <? extends Shape> c) {
-    return true;
-  }
-  */
   public void draw(){
-    System.out.print(layerName + ": ");
+    System.out.println(layerName + ": ");
     for (Element e : this) {
-      e.draw();
+      System.out.println(e);
     }
-    System.out.println();
   }
 
   @Override
   public Iterator<Element> iterator() {
-    return elements.iterator();
+    return layerElements.iterator();
   }
 
-  Layer(String name) {
-    this.layerId = 1;
+  public Layer withName(String newname) {
+    return new Layer(this.layerId, newname, this.layerStyle, this.layerElements);
+  }
+
+  public Layer withStyle(Style newstyle) {
+    return new Layer(this.layerId, this.layerName, newstyle, this.layerElements);
+  }
+
+  Layer() {
+    this(1, "NONAME", new Style(), new ArrayList<Element>());
+  }
+
+  private Layer(int id, String name, Style style, List<Element> elements) {
+    this.layerId = id;
     this.layerName = name;
-    this.layerStyle = new Style();
+    this.layerStyle = style;
+    this.layerElements = elements;
   }
 }

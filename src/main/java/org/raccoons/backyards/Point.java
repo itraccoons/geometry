@@ -5,7 +5,8 @@ public class Point extends Shape {
 
   @Override
   public String toString() {
-    return "Point{" +
+    return super.toString() +
+                   "Point{" +
                    "coordinate=" + coordinate +
                    '}';
   }

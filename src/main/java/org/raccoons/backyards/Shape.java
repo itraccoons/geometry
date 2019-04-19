@@ -1,37 +1,17 @@
 package org.raccoons.backyards;
 
-import javafx.scene.paint.Paint;
+public class Shape {
+  private final Paint fill;
+  //private final Stroke stroke;
 
-import javax.accessibility.AccessibleState;
-import javax.accessibility.AccessibleStateSet;
+  @Override
+  public String toString() {
+    return "Shape{" +
+                   "fill=" + fill +
+                   '}';
+  }
 
-public abstract class Shape {
-  private final AccessibleStateSet accessibleStateSet = new AccessibleStateSet();
-
-  public final void setVisible(boolean b) {
-    if(b) {
-      accessibleStateSet.add(AccessibleState.VISIBLE);
-    }else{
-      accessibleStateSet.remove(AccessibleState.VISIBLE);
+  Shape() {
+      this.fill = new Color();
     }
-  }
-
-  public final boolean isVisible() {
-    return accessibleStateSet.contains(AccessibleState.VISIBLE);
-  }
-
-  public final void setFill(Paint value) {
-
-  }
-
-  public void relocate(PolarCoordinate pc) {
-
-  }
-
-  public void setRotate(double value) {
-  }
-
-  public final String type() {
-    return getClass().getSimpleName();
-  }
 }
