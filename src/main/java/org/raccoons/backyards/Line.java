@@ -1,24 +1,8 @@
 package org.raccoons.backyards;
 
 public class Line extends Shape {
-  private Coordinate start;
-  private Coordinate end;
-
-  public void setStart(Coordinate s) {
-    this.start = s;
-  }
-
-  public void setEnd(Coordinate e) {
-    this.end = e;
-  }
-
-  public Coordinate start() {
-    return start;
-  }
-
-  public Coordinate end() {
-    return end;
-  }
+  private final Point start;
+  private final Point end;
 
   @Override
   public String toString() {
@@ -29,11 +13,20 @@ public class Line extends Shape {
                    '}';
   }
 
-  Line(Coordinate s, Coordinate e) {
+  public Line withStart(Point newstart) {
+    return new Line(newstart, this.end);
+  }
+
+  public Line withEnd(Point newend) {
+    return new Line(this.start, newend);
+  }
+
+  Line() {
+    this(new Point(), new Point());
+  }
+
+  private Line(Point s, Point e) {
     this.start = s;
     this.end = e;
   }
-
-  //Line(Coordinate start, Coordinate end, Style style) {}
-
 }

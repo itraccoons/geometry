@@ -1,34 +1,31 @@
 package org.raccoons.backyards;
 
 public class Circle extends Shape {
-  private Coordinate center;
-  private double radius;
-
-  public Coordinate center() {
-    return center;
-  }
-
-  public double radius() {
-    return radius;
-  }
-
-  public void setCenter(Coordinate c) {
-    this.center = c;
-  }
-
-  public void setRadius(double r) {
-    this.radius = r;
-  }
+  private final Point center;
+  private final double radius;
 
   @Override
   public String toString() {
-    return "Circle{" +
+    return super.toString() +
+                   "Circle{" +
                    "center=" + center +
                    ", radius=" + radius +
                    '}';
   }
 
-  Circle(Coordinate center, double radius) {
+  public Circle withCenter(Point newcenter) {
+    return new Circle(newcenter, this.radius);
+  }
+
+  public Circle withRadius(double newradius) {
+    return new Circle(this.center, newradius);
+  }
+
+  Circle() {
+    this(new Point(), 0.0);
+  }
+
+  private Circle(Point center, double radius) {
     this.center = center;
     this.radius = radius;
   }

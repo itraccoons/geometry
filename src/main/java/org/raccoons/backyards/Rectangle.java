@@ -1,47 +1,39 @@
 package org.raccoons.backyards;
 
 public class Rectangle extends Shape {
-  private double width;
-  private double height;
-  private Coordinate position;
-
-  public double width() {
-    return width;
-  }
-
-  public double height() {
-    return height;
-  }
-
-  public Coordinate position() {
-    return position;
-  }
-
-  public void setWidth(double width) {
-    this.width = width;
-  }
-
-  public void setHeight(double height) {
-    this.height = height;
-  }
-
-  public void setPosition(Coordinate position) {
-    this.position = position;
-  }
+  private final Point position;
+  private final double width;
+  private final double height;
 
   @Override
   public String toString() {
-    return "Rectangle{" +
-                   "width=" + width +
+    return super.toString() +
+                   "Rectangle{" +
+                   "position=" + position +
+                   ", width=" + width +
                    ", height=" + height +
-                   ", position=" + position +
                    '}';
   }
 
-  Rectangle(double w, double h, Coordinate p) {
+  public Rectangle withPosition(Point newposition) {
+    return new Rectangle(newposition, this.width, this.height);
+  }
+
+  public Rectangle withWidth(double newwidth) {
+    return new Rectangle(this.position, newwidth, this.height);
+  }
+
+  public Rectangle withHeight(double newheight) {
+    return new Rectangle(this.position, this.width, newheight);
+  }
+
+  Rectangle() {
+    this(new Point(), 0.0, 0.0);
+  }
+
+  private Rectangle(Point p, double w, double h) {
+    this.position = p;
     this.width = w;
     this.height = h;
-    this.position = p;
   }
-  //Rectangle(double width, double height, Coordinate position, Style style)
 }
