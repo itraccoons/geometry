@@ -1,32 +1,39 @@
 package org.raccoons.backyards;
 
-public class Line extends Shape {
+public final class Line extends Shape {
   private final Point start;
   private final Point end;
+  private final Stroke stroke;
 
   @Override
   public String toString() {
-    return super.toString() +
-                   "Line{" +
+    return "Line{" +
                    "start=" + start +
                    ", end=" + end +
+                   ", stroke=" + stroke +
                    '}';
   }
 
   public Line withStart(Point newstart) {
-    return new Line(newstart, this.end);
+    return new Line(newstart, this.end, this.stroke);
   }
 
   public Line withEnd(Point newend) {
-    return new Line(this.start, newend);
+    return new Line(this.start, newend, this.stroke);
+  }
+
+  public Line withStroke(Stroke newstroke) {
+    return new Line(this.start, this.end, newstroke);
   }
 
   Line() {
-    this(new Point(), new Point());
+    this(new Point(), new Point(), new Stroke());
   }
 
-  private Line(Point s, Point e) {
-    this.start = s;
-    this.end = e;
+  private Line(Point start, Point end, Stroke stroke) {
+    this.start = start;
+    this.end = end;
+    this.stroke = stroke;
+
   }
 }

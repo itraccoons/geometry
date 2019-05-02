@@ -12,8 +12,20 @@ public class Transformation {
                    '}';
   }
 
+  public Transformation withRotation(double newrotation) {
+    return new Transformation(newrotation, this.scale);
+  }
+
+  public Transformation withScale(double newscale) {
+    return new Transformation(this.rotation, newscale);
+  }
+
   Transformation() {
-    this.rotation = 0.0;
-    this.scale  = 0.0;
+    this(0.0,0.0);
+  }
+
+  private Transformation(double r, double s) {
+    this.rotation = r;
+    this.scale = s;
   }
 }

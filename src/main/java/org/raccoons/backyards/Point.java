@@ -1,13 +1,12 @@
 package org.raccoons.backyards;
 
-public class Point extends Shape {
+public final class Point extends Shape {
   private final double coordinateX;
   private final double coordinateY;
 
   @Override
   public String toString() {
-    return super.toString() +
-                   "Point{" +
+    return "Point{" +
                    "coordinateX=" + coordinateX +
                    ", coordinateY=" + coordinateY +
                    '}';
@@ -16,6 +15,7 @@ public class Point extends Shape {
   public double getX() {
     return this.coordinateX;
   }
+
   public double getY() {
     return this.coordinateY;
   }

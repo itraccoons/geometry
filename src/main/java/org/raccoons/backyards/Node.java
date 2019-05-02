@@ -1,6 +1,6 @@
 package org.raccoons.backyards;
 
-public class Node {
+public final class Node {
   private final int nodeId;
   private final Shape nodeShape;
   private final Style nodeStyle;
@@ -29,7 +29,7 @@ public class Node {
   }
 
   Node() {
-    this(1, new Style(), new Shape(), new Transformation());
+    this(1, new Style(), new Point(), new Transformation());
   }
 
   private Node(int id, Style style, Shape shape, Transformation transformation) {

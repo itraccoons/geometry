@@ -12,9 +12,6 @@ public final class Style {
                    '}';
   }
 
-  /*
-   * Chained setters
-   */
   public Style withVisible(boolean v) {
     return new Style(v, this.optacity);
   }
@@ -23,9 +20,6 @@ public final class Style {
     return new Style(this.visible, o);
   }
 
-  /*
-   * Constructors
-   */
   Style() {
     this(true, 1.0);
   }

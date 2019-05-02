@@ -69,7 +69,7 @@ title __GEOMETRY's Class Diagram__\n
   
 
   package org.raccoons.backyards {
-    class Shape {
+    abstract class Shape {
     }
   }
   
@@ -108,7 +108,7 @@ title __GEOMETRY's Class Diagram__\n
   Rectangle -up-|> Shape
   Rectangle o-- Point : position
   Shape o-- Paint : fill
-  Stroke o-- Paint : color
+  Shape o-- Stroke : stroke
 
 
 right footer

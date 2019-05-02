@@ -16,6 +16,15 @@ title __BACKYARDS's Class Diagram__\n
 
   package org.raccoons.backyards {
     class Color {
+        - red : int
+        - green : int
+        - blue : int
+        + toString()
+        + withRed()
+        + withGreen()
+        + withBlue()
+        ~ Color()
+        - Color()
     }
   }
   
@@ -105,8 +114,12 @@ title __BACKYARDS's Class Diagram__\n
         - coordinateX : double
         - coordinateY : double
         + toString()
+        + getX()
+        + getY()
         + withX()
         + withY()
+        + withFill()
+        + withStroke()
         + Point()
         - Point()
     }
@@ -128,8 +141,11 @@ title __BACKYARDS's Class Diagram__\n
   
 
   package org.raccoons.backyards {
-    class Shape {
+    abstract class Shape {
         + toString()
+        {abstract} + withFill()
+        {abstract} + withStroke()
+        ~ Shape()
         ~ Shape()
     }
   }
@@ -137,7 +153,6 @@ title __BACKYARDS's Class Diagram__\n
 
   package org.raccoons.backyards {
     class Stroke {
-        - width : double
     }
   }
   
@@ -160,7 +175,10 @@ title __BACKYARDS's Class Diagram__\n
         - rotation : double
         - scale : double
         + toString()
+        + withRotation()
+        + withScale()
         ~ Transformation()
+        - Transformation()
     }
   }
   
@@ -181,7 +199,7 @@ title __BACKYARDS's Class Diagram__\n
   Rectangle -up-|> Shape
   Rectangle o-- Point : position
   Shape o-- Paint : fill
-  Stroke o-- Paint : color
+  Shape o-- Stroke : stroke
 
 
 right footer
