@@ -1,10 +1,9 @@
 package org.raccoons.backyards;
 
-public class Color extends Paint {
+public final class Color extends Paint {
   private final int red;
   private final int green;
   private final int blue;
-
 
   public final static Color BLACK = new Color(0x000000);
   public final static Color BLUE = new Color(0x0000FF);

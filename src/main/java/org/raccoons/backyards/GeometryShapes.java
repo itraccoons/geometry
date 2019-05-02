@@ -1,7 +1,5 @@
 package org.raccoons.backyards;
 
-import java.util.Properties;
-
 public class GeometryShapes {
 
   public static void main(String[] args) {
@@ -30,7 +28,7 @@ public class GeometryShapes {
             new Line()
                     .withStart(new Point().withX(5).withY(15))
                     .withEnd(new Point().withX(3).withY(33))
-                    .withStroke(new Stroke().withColor(Color.RED));
+                    .withStroke(new Stroke().withColor(Color.RED).withLineCap(StrokeLineCap.ROUND));
 
     Shape circle =
             new Circle()

@@ -1,6 +1,6 @@
 package org.raccoons.backyards;
 
-public class Transformation {
+public final class Transformation {
   private double rotation;
   private double scale;
 
