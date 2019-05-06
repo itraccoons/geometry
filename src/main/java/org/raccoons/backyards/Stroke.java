@@ -12,6 +12,7 @@ public final class Stroke {
     return "Stroke{" +
                    "color=" + color +
                    ", width=" + width +
+                   ", lineCap=" + lineCap +
                    '}';
   }
 

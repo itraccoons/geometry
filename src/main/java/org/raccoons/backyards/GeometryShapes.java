@@ -28,7 +28,10 @@ public class GeometryShapes {
             new Line()
                     .withStart(new Point().withX(5).withY(15))
                     .withEnd(new Point().withX(3).withY(33))
-                    .withStroke(new Stroke().withColor(Color.RED).withLineCap(StrokeLineCap.ROUND));
+                    .withStroke(new Stroke()
+                                        .withColor(Color.RED)
+                                        .withWidth(5)
+                                        .withLineCap(StrokeLineCap.ROUND));
 
     Shape circle =
             new Circle()
@@ -40,10 +43,11 @@ public class GeometryShapes {
     Shape rectangle =
             new Rectangle()
                     .withPosition(new Point().withX(200).withY(200))
+                    //.withPosition(new Point(200, 200))
                     .withWidth(200)
                     .withHeight(200)
                     .withFill(Color.BLACK)
-                    .withStroke(new Stroke().withColor(Color.BLUE));
+                    .withStroke(new Stroke().withColor(Color.BLUE).withLineCap(StrokeLineCap.ROUND));
 
     layer3.add(nodeTemplate.withShape(point));
     layer3.add(nodeTemplate.withShape(line));
@@ -56,7 +60,6 @@ public class GeometryShapes {
     image.draw();
     image.removeAll(layer3);
     image.draw();
-
   }
 
 }
